@@ -1,6 +1,5 @@
 BIN = hellot
 CC = gcc
-CFLAGS = -std=c11
 FLAGS = -Wall -pedantic -mmacosx-version-min=10.5 -arch x86_64 -fmessage-length=0 -UGLFW_CDECL -fprofile-arcs -ftest-coverage
 INC = -I ../common/include -I/sw/include -I/usr/local/include
 LIB_PATH = ../common/osx_64/
@@ -9,5 +8,5 @@ FRAMEWORKS = -framework Cocoa -framework OpenGL -framework IOKit
 SRC = main.c
 
 all:
-	${CC} ${CFLAGS} ${FLAGS} ${FRAMEWORKS} -o ${BIN} ${SRC} ${INC} ${LOC_LIB}
+	${CC} ${FLAGS} ${FRAMEWORKS} -o ${BIN} ${SRC} ${INC} ${LOC_LIB}
 

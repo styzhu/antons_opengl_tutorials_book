@@ -31,21 +31,27 @@ int main () {
 	/* geometry to use. these are 3 xyz points (9 floats total) to make a triangle
 	*/
 	GLfloat points[] = {
-		 0.0f,	0.5f,	0.0f,
-		 0.5f, -0.5f,	0.0f,
-		-0.5f, -0.5f,	0.0f
+		 /* 0.0f,	0.5f,	0.0f, */
+		 /* 0.5f, -0.5f,	0.0f, */
+		/* -0.5f, -0.5f,	0.0f, */
+		-0.5f, 0.5f, 0.0f,
+		0.5f,  -0.5f, 0.0f,
+		-0.5f, -0.5f, 0.0f,
+		-1.5f, 0.5f, 0.0f,
+		-0.5f, -0.5f, 0.0f,
+		-1.5f, -0.5f, 0.0f
 	};
 	/* these are the strings of code for the shaders
 	the vertex shader positions each vertex point */
 	char* vertex_shader = 0;
 	char* fragment_shader = 0;
 	long length;
-	FILE * f = fopen("vertex_shader.glsl", "rb");
+	FILE * f = fopen("/Users/FunghiApe/Documents/TestCodes/OpenGL/antons_opengl_tutorials_book/00_hello_triangle/vertex_shader.glsl", "rb");
 	if(f){
 		fseek(f, 0, SEEK_END);
 		length = ftell(f);
 		fseek(f, 0, SEEK_SET);
-		vertex_shader = malloc(length);
+		vertex_shader = (char*)malloc(length);
 		if(vertex_shader){
 			fread(vertex_shader, 1, length, f);
 		}
@@ -53,12 +59,12 @@ int main () {
 	}
 	/* the fragment shader colours each fragment (pixel-sized area of the
 	triangle) */
-	f = fopen("fragment_shader.glsl", "rb");
+	f = fopen("/Users/FunghiApe/Documents/TestCodes/OpenGL/antons_opengl_tutorials_book/00_hello_triangle/fragment_shader.glsl", "rb");
 	if(f){
 		fseek(f, 0, SEEK_END);
 		length = ftell(f);
 		fseek(f, 0, SEEK_SET);
-		fragment_shader = malloc(length);
+		fragment_shader = (char*)malloc(length);
 		if(fragment_shader){
 			fread(fragment_shader, 1, length, f);
 		}
@@ -107,7 +113,7 @@ int main () {
 	on the graphics adapter's memory. in our case - the vertex points */
 	glGenBuffers (1, &vbo);
 	glBindBuffer (GL_ARRAY_BUFFER, vbo);
-	glBufferData (GL_ARRAY_BUFFER, 9 * sizeof (GLfloat), points, GL_STATIC_DRAW);
+	glBufferData (GL_ARRAY_BUFFER, 18 * sizeof (GLfloat), points, GL_STATIC_DRAW);
 	
 	/* the vertex array object (VAO) is a little descriptor that defines which
 	data from vertex buffer objects should be used as input variables to vertex
@@ -149,7 +155,7 @@ int main () {
 		glUseProgram (shader_programme);
 		glBindVertexArray (vao);
 		/* draw points 0-3 from the currently bound VAO with current in-use shader*/
-		glDrawArrays (GL_TRIANGLES, 0, 3);
+		glDrawArrays (GL_POINTS, 0, 6);
 		/* update other events like input handling */
 		glfwPollEvents ();
 		/* put the stuff we've been drawing onto the display */

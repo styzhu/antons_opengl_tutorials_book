@@ -31,9 +31,15 @@ int main () {
 	/* geometry to use. these are 3 xyz points (9 floats total) to make a triangle
 	*/
 	GLfloat points[] = {
-		 0.0f,	0.5f,	0.0f,
-		 0.5f, -0.5f,	0.0f,
-		-0.5f, -0.5f,	0.0f
+		 /* 0.0f,	0.5f,	0.0f, */
+		 /* 0.5f, -0.5f,	0.0f, */
+		/* -0.5f, -0.5f,	0.0f, */
+		-0.5f, 0.5f, 0.0f,
+		0.5f,  -0.5f, 0.0f,
+		-0.5f, -0.5f, 0.0f,
+		-1.5f, 0.5f, 0.0f,
+		-0.5f, -0.5f, 0.0f,
+		-1.5f, -0.5f, 0.0f
 	};
 	/* these are the strings of code for the shaders
 	the vertex shader positions each vertex point */
@@ -107,7 +113,7 @@ int main () {
 	on the graphics adapter's memory. in our case - the vertex points */
 	glGenBuffers (1, &vbo);
 	glBindBuffer (GL_ARRAY_BUFFER, vbo);
-	glBufferData (GL_ARRAY_BUFFER, 9 * sizeof (GLfloat), points, GL_STATIC_DRAW);
+	glBufferData (GL_ARRAY_BUFFER, 18 * sizeof (GLfloat), points, GL_STATIC_DRAW);
 	
 	/* the vertex array object (VAO) is a little descriptor that defines which
 	data from vertex buffer objects should be used as input variables to vertex
@@ -149,7 +155,7 @@ int main () {
 		glUseProgram (shader_programme);
 		glBindVertexArray (vao);
 		/* draw points 0-3 from the currently bound VAO with current in-use shader*/
-		glDrawArrays (GL_TRIANGLES, 0, 3);
+		glDrawArrays (GL_TRIANGLES, 0, 6);
 		/* update other events like input handling */
 		glfwPollEvents ();
 		/* put the stuff we've been drawing onto the display */

@@ -40,12 +40,12 @@ int main () {
 	char* vertex_shader = 0;
 	char* fragment_shader = 0;
 	long length;
-	FILE * f = fopen("vertex_shader.glsl", "rb");
+	FILE * f = fopen("/Users/FunghiApe/Documents/TestCodes/OpenGL/antons_opengl_tutorials_book/00_hello_triangle/vertex_shader.glsl", "rb");
 	if(f){
 		fseek(f, 0, SEEK_END);
 		length = ftell(f);
 		fseek(f, 0, SEEK_SET);
-		vertex_shader = malloc(length);
+		vertex_shader = (char*)malloc(length);
 		if(vertex_shader){
 			fread(vertex_shader, 1, length, f);
 		}
@@ -53,12 +53,12 @@ int main () {
 	}
 	/* the fragment shader colours each fragment (pixel-sized area of the
 	triangle) */
-	f = fopen("fragment_shader.glsl", "rb");
+	f = fopen("/Users/FunghiApe/Documents/TestCodes/OpenGL/antons_opengl_tutorials_book/00_hello_triangle/fragment_shader.glsl", "rb");
 	if(f){
 		fseek(f, 0, SEEK_END);
 		length = ftell(f);
 		fseek(f, 0, SEEK_SET);
-		fragment_shader = malloc(length);
+		fragment_shader = (char*)malloc(length);
 		if(fragment_shader){
 			fread(fragment_shader, 1, length, f);
 		}

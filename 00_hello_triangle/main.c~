@@ -27,6 +27,7 @@ int main () {
 	const GLubyte* version;
 	GLuint vao;
 	GLuint vbo;
+	GLuint vs,fs;
 	/* geometry to use. these are 3 xyz points (9 floats total) to make a triangle
 	*/
 	GLfloat points[] = {
